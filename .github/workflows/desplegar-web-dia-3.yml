@@ -5,7 +5,7 @@ on:
   push:
     branches: ["main"] # OJO: Si tu rama se llama "master", cámbialo aquí
     paths:
-      - "semana_1/dia_3/web/**" # Solo se lanza si hay cambios en esta carpeta
+      - "semana-1/dia-3/01-vagrant-tarea/web/**" # Solo se lanza si hay cambios en esta carpeta
   workflow_dispatch: # Permite lanzar la acción manualmente desde GitHub
 
 # Permisos necesarios para publicar en Pages
@@ -36,7 +36,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # AQUÍ le decimos exactamente qué carpeta subir
-          path: "./semana_1/dia_3/web"
+          path: "./semana-1/dia-3/01-vagrant-tarea/web"
 
       - name: 🚀 Desplegar a GitHub Pages
         id: deployment
