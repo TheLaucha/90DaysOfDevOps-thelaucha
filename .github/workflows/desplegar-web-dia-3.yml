@@ -1,0 +1,43 @@
+name: Desplegar Web a GitHub Pages
+
+# ¿Cuándo se ejecuta esto?
+on:
+  push:
+    branches: ["main"] # OJO: Si tu rama se llama "master", cámbialo aquí
+    paths:
+      - "semana_1/dia_3/web/**" # Solo se lanza si hay cambios en esta carpeta
+  workflow_dispatch: # Permite lanzar la acción manualmente desde GitHub
+
+# Permisos necesarios para publicar en Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Evita que múltiples despliegues se pisen entre sí
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  desplegar:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Descargar el código del repositorio
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Configurar GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: 📦 Empaquetar la carpeta web
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # AQUÍ le decimos exactamente qué carpeta subir
+          path: "./semana_1/dia_3/web"
+
+      - name: 🚀 Desplegar a GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
