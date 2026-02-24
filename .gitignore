@@ -1,0 +1,50 @@
+# --- Sistema Operativo y Editores ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- Vagrant (CRÍTICO) ---
+# La carpeta .vagrant contiene el estado de la máquina y claves privadas
+.vagrant/
+# Archivos de logs de vagrant
+vagrant-*.log
+# Si descargas cajas manualmente
+*.box
+
+# --- Virtualización General ---
+# Evita subir discos duros virtuales pesados por error
+*.vdi
+*.vmdk
+*.vhd
+*.iso
+
+# --- Terraform (Seguro lo usarás más adelante) ---
+# Archivos de estado local (pueden contener secretos)
+*.tfstate
+*.tfstate.backup
+# Carpeta de plugins descargados
+.terraform/
+# Archivos de variables con secretos
+*.tfvars
+*.tfvars.json
+
+# --- Ansible ---
+*.retry
+
+# --- Python / Scripting ---
+__pycache__/
+*.pyc
+venv/
+.env
+
+# --- Seguridad / Credenciales ---
+# IMPORTANTE: Nunca subas claves privadas o ficheros .env
+*.pem
+*.key
+id_rsa
+id_rsa.pub
+.env.local
+config_local.sh
