@@ -1,0 +1,23 @@
+Vagrant.configure("2") do |config|
+  # Usa una imagen ligera de Ubuntu 22.04
+  config.vm.box = "ubuntu/jammy64"
+  
+  # Configuración de red (accesible via IP)
+  config.vm.network "private_network", ip: "192.168.33.11"
+
+  # Configuración de red (puerto 8080 en el host redirigido al puerto 80 del guest)
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+
+  # Sincronización de carpetas
+  # Carpeta local "./web" sincronizada con "/var/www/html" en el guest
+  config.vm.synced_folder "./web", "/var/www/html"
+
+  # Provisionamiento con Shell
+  config.vm.provision "shell", inline: <<-SHELL
+    echo "Hola desde el provisionamiento de Vagrant" > /tmp/hola.txt
+    cat /tmp/hola.txt
+  SHELL
+
+  config.vm.provision "shell", path: "./scripts/instalar_nginx.sh"
+
+end

@@ -1,0 +1,201 @@
+/* Estilos personalizados para el Portfolio */
+
+/* Mejoras en la tipografía para el portfolio */
+.portfolio-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.portfolio-header h1 {
+  margin-bottom: 0.5rem;
+}
+
+.portfolio-header .subtitle {
+  color: #666;
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+}
+
+/* Estilos para las secciones de contacto */
+.contact-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.contact-links a {
+  color: #007acc;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border: 1px solid #007acc;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.contact-links a:hover {
+  background-color: #007acc;
+  color: white;
+}
+
+/* Estilos para las habilidades técnicas */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.skill-category {
+  background-color: #f8f8f8;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #007acc;
+}
+
+.skill-category h3 {
+  margin-top: 0;
+  color: #007acc;
+  font-size: 1.3rem;
+}
+
+.skill-category p {
+  margin-bottom: 0;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* Estilos para las experiencias */
+.experience-item {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+.experience-item:last-child {
+  border-bottom: none;
+}
+
+.experience-item h3 {
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.experience-item .company-info {
+  color: #666;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+/* Estilos para los proyectos destacados */
+.project-card {
+  background-color: #f8f8f8;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #28a745;
+}
+
+.project-card h3 {
+  color: #28a745;
+  margin-top: 0;
+}
+
+/* Estilos para las certificaciones */
+.certification-item {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: #f8f8f8;
+  border-radius: 6px;
+  border-left: 4px solid #ffc107;
+}
+
+.certification-item h3 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.certification-item .cert-info {
+  color: #666;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+/* Estilos para el modo oscuro */
+@media (prefers-color-scheme: dark) {
+  .skill-category,
+  .project-card,
+  .certification-item {
+    background-color: #2a2a2a;
+    border-color: #007acc;
+  }
+
+  .skill-category h3,
+  .project-card h3 {
+    color: #007acc;
+  }
+
+  .certification-item h3 {
+    color: #ddd;
+  }
+
+  .contact-links a {
+    border-color: #007acc;
+    color: #007acc;
+  }
+
+  .contact-links a:hover {
+    background-color: #007acc;
+    color: #151515;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-links {
+    flex-direction: column;
+  }
+
+  .contact-links a {
+    text-align: center;
+  }
+}
+
+/* Animaciones sutiles */
+.skill-category,
+.project-card,
+.certification-item {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skill-category:hover,
+.project-card:hover,
+.certification-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el epígrafe */
+.epigraph {
+  margin: 3rem 0;
+  text-align: center;
+}
+
+.epigraph blockquote {
+  font-style: italic;
+  font-size: 1.3rem;
+  color: #666;
+  border-left: none;
+  padding-left: 0;
+}
+
+.epigraph footer {
+  margin-top: 1rem;
+  font-style: normal;
+  color: #999;
+}
