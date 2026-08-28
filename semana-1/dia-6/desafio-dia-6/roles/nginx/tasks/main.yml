@@ -1,0 +1,23 @@
+---
+# Tareas del rol nginx: instala el paquete, despliega la pagina, y se asegura de que el servicio este corriendo
+- name: Instalar nginx
+  apt:
+    name: nginx
+    state: present
+    update_cache: yes
+
+- name: Desplegar landing page personalizada
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+    owner: www-data
+    group: www-data
+    mode: "0644"
+  notify:
+    - Reiniciar nginx
+
+- name: Asegurar que nginx esta iniciado y habilitado
+  service:
+    name: nginx
+    state: started
+    enabled: yes

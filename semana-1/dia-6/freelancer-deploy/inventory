@@ -1,0 +1,4 @@
+[servers]
+ubuntu ansible_host=192.168.33.10 ansible_user=vagrant ansible_private_key_file=~/.ssh/vagrant-project.key
+
+#nombre #ip_de_la_vm #usuario_ssh #clave_que_ansible_utilizara

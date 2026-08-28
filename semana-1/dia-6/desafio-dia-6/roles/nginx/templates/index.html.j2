@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Landing page de ejemplo para una plataforma DevOps moderna.">
+	<title>ForgeOps | Entrega software sin fricción</title>
+	<style>
+		:root {
+			--ink: #18221f;
+			--muted: #64716c;
+			--paper: #f5f7f1;
+			--surface: #ffffff;
+			--line: #dce4dc;
+			--lime: #d9f45b;
+			--lime-dark: #a4c52b;
+			--orange: #ff7448;
+			--teal: #1e7b72;
+			--shadow: 0 22px 55px rgba(24, 34, 31, .12);
+		}
+
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body {
+			margin: 0;
+			color: var(--ink);
+			background: var(--paper);
+			font-family: Georgia, 'Times New Roman', serif;
+			line-height: 1.5;
+		}
+		a { color: inherit; text-decoration: none; }
+		.shell { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+		.topbar {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			min-height: 84px;
+			border-bottom: 1px solid var(--line);
+			font-family: 'Trebuchet MS', sans-serif;
+		}
+		.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .02em; }
+		.brand-mark {
+			display: grid;
+			width: 32px;
+			height: 32px;
+			place-items: center;
+			color: var(--ink);
+			background: var(--lime);
+			border-radius: 50%;
+			font-size: 18px;
+		}
+		.nav { display: flex; align-items: center; gap: 30px; color: var(--muted); font-size: 14px; }
+		.nav a:hover { color: var(--ink); }
+		.nav-cta, .hero-cta {
+			display: inline-flex;
+			align-items: center;
+			gap: 10px;
+			padding: 13px 18px;
+			color: var(--ink);
+			background: var(--lime);
+			border-radius: 4px;
+			font-weight: 700;
+		}
+		.nav-cta:hover, .hero-cta:hover { background: #e5fb77; }
+		.hero {
+			display: grid;
+			grid-template-columns: 1.05fr .95fr;
+			gap: 80px;
+			align-items: center;
+			min-height: 590px;
+			padding: 80px 0 92px;
+		}
+		.eyebrow {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			margin-bottom: 22px;
+			color: var(--teal);
+			font: 700 12px/1 'Trebuchet MS', sans-serif;
+			letter-spacing: .16em;
+			text-transform: uppercase;
+		}
+		.eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--orange); }
+		h1 { max-width: 620px; margin: 0; font-size: clamp(48px, 7vw, 88px); line-height: .98; letter-spacing: -.04em; }
+		.hero-copy { max-width: 490px; margin: 28px 0 34px; color: var(--muted); font-size: 19px; }
+		.hero-cta { font: 700 14px 'Trebuchet MS', sans-serif; }
+		.hero-cta span { font-size: 19px; line-height: 0; }
+		.signal {
+			position: relative;
+			min-height: 390px;
+			padding: 26px;
+			overflow: hidden;
+			background: var(--teal);
+			box-shadow: var(--shadow);
+			border-radius: 4px;
+		}
+		.signal::after {
+			content: '';
+			position: absolute;
+			right: -70px;
+			bottom: -95px;
+			width: 260px;
+			height: 260px;
+			border: 38px solid rgba(217, 244, 91, .25);
+			border-radius: 50%;
+		}
+		.terminal { position: relative; z-index: 1; padding: 20px; background: #172c29; border-radius: 3px; font: 13px/1.8 'Courier New', monospace; box-shadow: 0 12px 28px rgba(0, 0, 0, .18); }
+		.terminal-bar { display: flex; gap: 6px; margin-bottom: 18px; }
+		.terminal-bar i { width: 8px; height: 8px; background: var(--orange); border-radius: 50%; }
+		.terminal-bar i:nth-child(2) { background: var(--lime); }
+		.terminal-bar i:nth-child(3) { background: #8fc8c0; }
+		.terminal p { margin: 0; color: #a8c7be; }
+		.terminal .command { color: var(--lime); }
+		.terminal .success { color: #f5f7f1; }
+		.pulse { position: absolute; right: 30px; bottom: 28px; z-index: 1; padding: 12px 15px; background: var(--orange); color: #fff; font: 700 12px 'Trebuchet MS', sans-serif; border-radius: 3px; }
+		.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+		.stat { padding: 28px 24px; background: var(--paper); }
+		.stat strong { display: block; margin-bottom: 5px; font-size: 37px; line-height: 1; }
+		.stat span { color: var(--muted); font: 12px 'Trebuchet MS', sans-serif; text-transform: uppercase; letter-spacing: .08em; }
+		.section { padding: 105px 0; }
+		.section-heading { display: flex; justify-content: space-between; gap: 30px; align-items: end; margin-bottom: 40px; }
+		h2 { max-width: 520px; margin: 0; font-size: clamp(34px, 5vw, 58px); line-height: 1; letter-spacing: -.03em; }
+		.section-heading p { max-width: 320px; margin: 0; color: var(--muted); }
+		.features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+		.feature { min-height: 245px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: 4px; }
+		.feature-number { color: var(--orange); font: 700 13px 'Trebuchet MS', sans-serif; }
+		.feature h3 { margin: 52px 0 10px; font-size: 25px; }
+		.feature p { margin: 0; color: var(--muted); font-size: 15px; }
+		.closing { display: grid; grid-template-columns: 1fr .7fr; gap: 60px; align-items: center; padding: 58px; background: var(--ink); color: var(--paper); border-radius: 4px; }
+		.closing h2 { color: var(--lime); }
+		.closing p { color: #b9c5bf; }
+		.closing a { justify-self: end; color: var(--ink); background: var(--lime); }
+		footer { padding: 28px 0 40px; color: var(--muted); font: 12px 'Trebuchet MS', sans-serif; }
+		@media (max-width: 760px) {
+			.shell { width: min(100% - 28px, 600px); }
+			.topbar { min-height: 70px; }
+			.nav a:not(.nav-cta) { display: none; }
+			.hero { grid-template-columns: 1fr; gap: 45px; padding: 62px 0 70px; }
+			h1 { font-size: clamp(46px, 15vw, 74px); }
+			.signal { min-height: 300px; }
+			.stats, .features { grid-template-columns: 1fr; }
+			.stat { padding: 20px; }
+			.section { padding: 75px 0; }
+			.section-heading { display: block; }
+			.section-heading p { margin-top: 20px; }
+			.feature { min-height: 190px; }
+			.feature h3 { margin-top: 28px; }
+			.closing { grid-template-columns: 1fr; gap: 26px; padding: 32px 26px; }
+			.closing a { justify-self: start; }
+		}
+	</style>
+</head>
+<body>
+	<header class="shell topbar">
+		<a class="brand" href="#inicio" aria-label="ForgeOps, inicio"><span class="brand-mark">+</span>ForgeOps</a>
+		<nav class="nav" aria-label="Navegación principal">
+			<a href="#metodo">Método</a>
+			<a href="#flujo">Flujo</a>
+			<a class="nav-cta" href="#contacto">Ver el flujo <span aria-hidden="true">↗</span></a>
+		</nav>
+	</header>
+
+	<main id="inicio">
+		<section class="shell hero">
+			<div>
+				<div class="eyebrow">Infraestructura que avanza</div>
+				<h1>Entrega código con más claridad.</h1>
+				<p class="hero-copy">ForgeOps convierte despliegues complejos en un flujo visible, repetible y listo para crecer contigo.</p>
+				<a class="hero-cta" href="#metodo">Explorar la plataforma <span aria-hidden="true">↗</span></a>
+			</div>
+			<div class="signal" aria-label="Terminal mostrando un despliegue exitoso">
+				<div class="terminal">
+					<div class="terminal-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+					<p>$ forgeops deploy production</p>
+					<p class="command">&gt; preparando infraestructura...</p>
+					<p class="command">&gt; verificando servicios....... ok</p>
+					<p class="command">&gt; publicando nueva versión.... ok</p>
+					<p class="success">Despliegue completado en 01:42</p>
+				</div>
+				<div class="pulse">● SISTEMA OPERATIVO</div>
+			</div>
+		</section>
+
+		<section class="stats shell" aria-label="Resultados de ForgeOps">
+			<div class="stat"><strong>99.9%</strong><span>disponibilidad</span></div>
+			<div class="stat"><strong>4.2×</strong><span>más entregas</span></div>
+			<div class="stat"><strong>01:42</strong><span>tiempo medio</span></div>
+		</section>
+
+		<section class="shell section" id="metodo">
+			<div class="section-heading">
+				<h2>Menos ritual. Más producto.</h2>
+				<p>Las herramientas correctas hacen que cada cambio sea fácil de entender y sencillo de repetir.</p>
+			</div>
+			<div class="features">
+				<article class="feature"><div class="feature-number">01 / VISIBILIDAD</div><h3>Todo en contexto</h3><p>Observa la salud de tus servicios y encuentra el siguiente movimiento sin cambiar de herramienta.</p></article>
+				<article class="feature"><div class="feature-number">02 / AUTOMATIZACIÓN</div><h3>Flujos que recuerdan</h3><p>Define una vez las buenas prácticas y deja que cada despliegue las ejecute sin sorpresas.</p></article>
+				<article class="feature"><div class="feature-number">03 / CONFIANZA</div><h3>Cambios con respaldo</h3><p>Historial claro, alertas útiles y reversión rápida cuando el camino pide ajustar.</p></article>
+			</div>
+		</section>
+
+		<section class="shell closing" id="flujo">
+			<div><h2>Tu próximo despliegue empieza aquí.</h2><p>Una base ordenada para equipos que quieren construir, medir y mejorar cada día.</p></div>
+			<a class="hero-cta" id="contacto" href="mailto:hola@forgeops.example">Hablar con el equipo <span aria-hidden="true">↗</span></a>
+		</section>
+	</main>
+
+	<footer class="shell">© 2026 ForgeOps <span aria-hidden="true">·</span> Landing page de ejemplo servida por Nginx</footer>
+</body>
+</html>

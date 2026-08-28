@@ -1,0 +1,32 @@
+---
+- name: Permitir tráfico en puertos {{ item }}
+  ufw:
+    rule: allow
+    port: "{{ item }}"
+    proto: tcp
+  loop:
+    - 22
+    - 80
+    - 443
+
+- name: Habilitar UFW
+  ufw:
+    state: enabled
+    policy: deny
+# - name: Habilitar tráfico SSH
+#   ufw:
+#     rule: allow
+#     port: 22
+#     proto: tcp
+
+# - name: Permitir tráfico HTTP
+#   ufw:
+#     rule: allow
+#     port: 80
+#     proto: tcp
+
+# - name: Permitir tráfico HTTPS
+#   ufw:
+#     rule: allow
+#     port: 443
+#     proto: tcp
